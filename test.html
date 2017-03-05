@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button id="test">Play an A!</button>
+    <script>
+      // Create a context for audio operations
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+      // Create a basic tone oscillator with gain (volume) control
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      // Connect the nodes
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      // Configure the nodes
+      // gainNode.gain.value = 0;
+      gainNode.gain.value = 0.5;
+      oscillator.type = 'sine';
+      oscillator.frequency.value = 440; // Hz
+
+      // Make a sound!
+      // oscillator.start();
+      let timeout, playing;
+      document.querySelector('#test').addEventListener('click', () => {
+        if (!playing) {
+          playing = true;
+          // gainNode.gain.value = 0.5;
+          oscillator.start();
+          clearTimeout(timeout);
+          timeout = setTimeout(() => {
+            // gainNode.gain.value = 0;
+            oscillator.stop();
+            playing = false;
+          }, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>

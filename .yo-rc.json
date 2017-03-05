@@ -1,0 +1,9 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "Making Music with Tone.js",
+    "packageVersion": "1.0.0",
+    "revealTheme": "solarized",
+    "useSass": false,
+    "deployToGithubPages": false
+  }
+}
